@@ -11,10 +11,26 @@
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    background-color: #57555518;
 }   
+
+.navbar-nav {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   gap: 20px;
+  
+}
+
+.navbar-nav  li a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 
 .navbar-nav  li a:hover{
     color: #1abc9c !important;
+  
 }   
 
 .footer-padding{
