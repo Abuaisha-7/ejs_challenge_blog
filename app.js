@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 
+let posts = [];
+
 const homeStartingContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.";
 const aboutContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.";
 const contactContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.";
@@ -17,13 +19,14 @@ app.get("/", function(req, res){
     res.render("home", {
         startingContent: homeStartingContent
     }); 
-
+    console.log(posts);
 });
 
 app.get("/about", function(req, res){
     res.render("about", {
         aboutContent: aboutContent
     });
+    
 });
 
 app.get("/contact", function(req, res){
@@ -35,6 +38,16 @@ app.get("/contact", function(req, res){
 app.get("/compose", function(req, res){
     res.render("compose");
 });
+
+app.post("/compose", function(req,res){
+   
+    const post = {
+        title : req.body.postTitle,
+        content : req.body.postBody
+    }
+    posts.push(post);
+    res.redirect("/");
+})
 
 
 
