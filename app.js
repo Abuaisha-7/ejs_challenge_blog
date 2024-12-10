@@ -40,6 +40,19 @@ app.get("/compose", function(req, res){
     res.render("compose");
 });
 
+app.get("/posts/:postName", function(req, res){
+    const requestedTitle = req.params;
+    
+    posts.forEach(function(post){
+        if(post.title === requestedTitle.postName){
+           console.log("much found");
+        } else {
+            console.log("not found");
+        }
+    })
+  
+});
+
 app.post("/compose", function(req,res){
    
     const post = {
