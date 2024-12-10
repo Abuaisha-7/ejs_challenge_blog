@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require('lodash');
 
 let posts = [];
 
@@ -41,14 +42,15 @@ app.get("/compose", function(req, res){
 });
 
 app.get("/posts/:postName", function(req, res){
-    const requestedTitle = req.params;
-    
+    const requestedTitle = _.lowerCase (req.params.postName);
+        
     posts.forEach(function(post){
-        if(post.title === requestedTitle.postName){
-           console.log("much found");
-        } else {
-            console.log("not found");
-        }
+        const storedTitle = _.lowerCase (post.title);
+        if(storedTitle === requestedTitle){
+            res.render("post", {
+             post: post
+            });
+        } 
     })
   
 });
